@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dotnetconfigmap
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: dotnetconfigmap
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dotnetconfigmap
+    spec:
+      volumes:
+      - name: appsettings-volume
+        configMap:
+          name: appsettings    
+      containers:
+      - name: dotnetconfigmap
+        image: geoffepa/configmapdotnet:latest
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "900m"
+        volumeMounts:
+        - name: appsettings-volume
+          mountPath: /configmapExample/config/
