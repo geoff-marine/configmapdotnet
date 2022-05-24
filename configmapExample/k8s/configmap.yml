@@ -7,7 +7,7 @@ data:
   appsettings.json: |-
     {
       "Settings": {
-        "KeyOne": "Azure2",
-        "KeyTwo": 1
+        "KeyOne": "new prompt",
+        "KeyTwo": 100
       }
     }
